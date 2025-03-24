@@ -24,13 +24,31 @@
             const infoHora   = localStorage.getItem("hora").value;
             const infoDes    = localStorage.getItem("descripcion").value;
 
-            document.getElementById("tareas", infoTareas);
-            document.getElementById("fecha", infoFecha);
-            document.getElementById("hora", infoHora);
-            document.getElementById("descripcion", infoDes);
+            document.getElementById("tareas").value      = localStorage.getItem("tareas");
+            document.getElementById("fecha").value       = localStorage.getItem("fecha");
+            document.getElementById("hora").value        = localStorage.getItem("hora");
+            document.getElementById("descripcion").value = localStorage.getItem("descripcion");
+        }    
+
+        function actualizarInfo() {
+            const infoTareas = document.getElementById("tareas").value;
+            const infoFecha  = document.getElementById("fecha").value;
+            const infoHora   = document.getElementById("hora").value;
+            const infoDes    = document.getElementById("descripcion").value;
+
+            localStorage.setItem("tareas", infoTareas);
+            localStorage.setItem("fecha", infoFecha);
+            localStorage.setItem("hora", infoHora);
+            localStorage.setItem("descripcion", infoDes);
         }
 
-        
+        function eliminarInfo() {
+            localStorage.removeItem("tareas");
+            localStorage.removeItem("fecha");
+            localStorage.removeItem("hora");
+            localStorage.removeItem("descripcion");
+        }
+
     </script>
 
 <body>
@@ -40,12 +58,8 @@
         <hr><br>
 
         <form 
-            onsubmit  ="guardarInfo();    return false;">
-            <!-- 
-            onsubmit  ="consultarInfo();  return false;"
-            onsubmit  ="actualizarInfo(); return false;"
-            onsubmit  ="eliminarInfo();   return false;"
-            -->
+            onsubmit  ="guardarInfo(); return false;">
+            
             <label for="tareas">Nombre de tarea</label>
             <input type="text" id="tareas" name="tareas">
             <br><br>
@@ -67,7 +81,6 @@
             <input type="button" onclick="actualizarInfo()" value="Actualizar">
             <input type="button" onclick="eliminarInfo()" value="Eliminar">
             
-
         </form>
 
     </section>
