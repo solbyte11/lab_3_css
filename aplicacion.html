@@ -6,14 +6,47 @@
     <title>App lista de tareas</title>
 </head>
     <script>
+        function guardarInfo() {
+            const infoTareas = document.getElementById("tareas").value;
+            const infoFecha  = document.getElementById("fecha").value;
+            const infoHora   = document.getElementById("hora").value;
+            const infoDes    = document.getElementById("descripcion").value;
+
+            localStorage.setItem("tareas", infoTareas);
+            localStorage.setItem("fecha", infoFecha);
+            localStorage.setItem("hora", infoHora);
+            localStorage.setItem("descripcion", infoDes);
+        }
+
+        function consultarInfo() {
+            const infoTareas = localStorage.getItem("tareas").value;
+            const infoFecha  = localStorage.getItem("fecha").value;
+            const infoHora   = localStorage.getItem("hora").value;
+            const infoDes    = localStorage.getItem("descripcion").value;
+
+            document.getElementById("tareas", infoTareas);
+            document.getElementById("fecha", infoFecha);
+            document.getElementById("hora", infoHora);
+            document.getElementById("descripcion", infoDes);
+        }
+
+        
     </script>
+
 <body>
     <section id="consulta">
 
         <h1 align="center">LISTA DE TAREAS</h1>
-        <hr>
-        <form onsubmit="guardarInfo(); return false;">
-            <label for="tarea">Nombre de tarea</label>
+        <hr><br>
+
+        <form 
+            onsubmit  ="guardarInfo();    return false;">
+            <!-- 
+            onsubmit  ="consultarInfo();  return false;"
+            onsubmit  ="actualizarInfo(); return false;"
+            onsubmit  ="eliminarInfo();   return false;"
+            -->
+            <label for="tareas">Nombre de tarea</label>
             <input type="text" id="tareas" name="tareas">
             <br><br>
 
@@ -27,7 +60,13 @@
 
             <label for="descripcion">Descripción</label>
             <input type="text" id="descripcion" name="descripcion">
-            <br><br>
+            <br><br><br>
+
+            <input type="submit" value="Crear tarea">
+            <input type="button" onclick="consultarInfo()" value="Consultar">
+            <input type="button" onclick="actualizarInfo()" value="Actualizar">
+            <input type="button" onclick="eliminarInfo()" value="Eliminar">
+            
 
         </form>
 
